@@ -4,7 +4,7 @@
   "description": "Relay Chat using Socket",
   "main": "app.js",
   "scripts": {
-    "node app.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
