@@ -2,8 +2,18 @@
 
 <div id="output" class="ui main text container segment" style="height:300px;line-height:3em;overflow:auto;padding:5px;"><%messages.forEach(function(message){%>
     
-    <p class=card-block ><strong><%=message.username%></strong>: <%= message.message%></p>    
-
+    <%if(currentUser){%>
+        
+        <%if(message.username==currentUser.username){%>
+            <p ><strong style="color:rgb(111, 170, 0)"><%=message.username%></strong>: <%= message.message%></p> 
+        <%}else{%>
+            <p><strong><%=message.username%></strong>: <%= message.message%></p>    
+        <%}%>
+    
+    <%}else{%>
+        <p><strong><%=message.username%></strong>: <%= message.message%></p>
+    <%}%>
+    
 <%})%></div>
 
 <script>

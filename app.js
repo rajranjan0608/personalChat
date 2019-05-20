@@ -37,6 +37,9 @@ app.use(express.static("public"));
 
 //SOCKET PROGRAMMING ALONG WITH MONGODB DATABASE
 
+//IMPORTING SOCKET
+var socket 			=require("socket.io");
+
 //CONNECTING WITH DATABASE
 mongoose.connect("mongodb://localhost/chat",{useNewUrlParser:true});
 
@@ -44,15 +47,12 @@ var server=app.listen(port,function(){
 	console.log("Connecting...\nConnected to Port "+port);
 });
 
-//IMPORTING SOCKET
-var socket 			=require("socket.io");
-
 //SOCKET SETUP : ON THE SERVER SIDE
 var io=socket(server);
 
 //LISTENING FROM THE CLIENTS
 io.on("connection",function(socket){
-	console.log("made socket connection", socket.id);
+	console.log("New Socket Connetcted with ID: ", socket.id);
 
 	socket.on("chat",function(data){
 		console.log(data);
@@ -112,10 +112,11 @@ app.post("/signup",function(req,res){
 //LOG IN
 app.post("/login",passport.authenticate("local",{
     successRedirect: "/index",
-    failureRedirect: "/signup"
+    failureRedirect: "/"
 }),function(req,res){
 
 });
+
 
 //LOG OUT
 app.get("/logout",function(req,res){

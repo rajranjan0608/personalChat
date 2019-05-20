@@ -25,6 +25,7 @@
 <%if(currentUser){%>
     <!-- <label>Username</label><br> -->
     <input type="hidden" type="text" id="username" placeholder="Username" <%if(currentUser){%>disabled<%}%> value="<%if(currentUser){%><%=currentUser.username%><%}%>" >    
+    <input type="hidden" value="<%if(currentUser){%><%=currentUser.username%><%}%>" id="currentUser">
 <%}%>
 
 <br><br>
