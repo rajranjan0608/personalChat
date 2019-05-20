@@ -4,7 +4,7 @@
   "description": "Relay Chat using Socket",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "node app.js"
   },
   "repository": {
     "type": "git",
