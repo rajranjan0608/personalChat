@@ -1,0 +1,17 @@
+<html>
+    <title>Web Sockets</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <body>
+        <div id="output"><%messages.forEach(function(message){%>
+              <p><strong><%=message.username%></strong>: <%= message.message%></p>    
+        <%})%></div>
+            
+        
+        <input type="text" id="username" placeholder="Username" required><br><br>
+        <input type="text" id="message" placeholder="Chat Here" required>
+        <button id="send">Send</button>
+        <div id="feedback"></div>
+        
+        <script src="/chat.js"></script>
+    </body>
+</html>

@@ -1,0 +1,70 @@
+<style>
+	.hover:hover{
+			background-color:#e7e7e7;
+	}
+    /* .topnav{
+        position: fixed; 
+        top: 0;
+        width:100%;
+    } */
+
+</style>
+
+<!--AWESOMEICONS.IO CSS-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+
+<!--NAVIGATION BAR-->
+<div class="navigation"></div>
+<nav class="navbar navbar-default navy  topnav">
+        <div class="navbar-header">
+
+            <!--NAVBAR HAMBURGER-->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a href="/" class="navbar-brand">Relay</a>
+
+        </div>
+        
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+        
+            <div class="nav navbar-nav navbar">
+                <li class="hover"><a href="/">Home</a></li>
+                <li class="hover"><a href="#about">About</a></li>
+            </div>
+        
+            <div class="nav navbar-nav navbar-right navright">
+                
+                <%if(!currentUser){%>
+                    <li style="padding-top:7px;">
+                        <form action="/login" method="POST" class="form-inline">
+                            <div class="form-group">
+                                <input style="width:204; height:34; margin-top:4px;" type="text" placeholder="Username" name="username" class="form-control" required>
+                                <input style="width:204; height:34; margin-top:4px;" type="password" placeholder="Password" name="password" class="form-control" required>
+
+                                <button style="margin-top:2px;" class="btn btn-default">Log In</button>
+                            </div>
+                        </form>
+                    </li>
+                    <li style="padding-left:0px;" class="hover"><a href="/signup">Sign Up <i id="icon" class="fa fa-user-plus"></i> </a></li>
+                <%}else{%>
+                    <li class="hover"><a style="color:green" href="#">Hi,   <%=currentUser.username%></a></li>
+                    <li class="hover"><a href="/logout">Log Out</a></li>
+                <%}%>
+    
+            </div>
+        </div>
+        
+
+</nav>
+<div>
+
+<script src="/jquery.js"></script>
+<script src="/bootstrap.js"></script>

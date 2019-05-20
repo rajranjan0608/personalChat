@@ -1,0 +1,31 @@
+{
+  "name": "relay",
+  "version": "1.0.0",
+  "description": "Relay Chat using Socket",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajranjan0608/relaychat.git"
+  },
+  "author": "Raj Ranjan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rajranjan0608/relaychat/issues"
+  },
+  "homepage": "https://github.com/rajranjan0608/relaychat#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.6.1",
+    "express": "^4.17.0",
+    "express-session": "^1.16.1",
+    "http": "0.0.0",
+    "mongoose": "^5.5.9",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^5.0.1",
+    "socket.io": "^2.2.0"
+  }
+}

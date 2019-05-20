@@ -1,0 +1,55 @@
+<html>
+  <head>
+            <title> Sign Up</title>  
+   	
+
+  <!--BOOTSTRAP CSS-->
+  <link rel="stylesheet" type="text/css" href="/sign_up/style.css">
+
+	<!--LOCAL CSS-->
+     	<link rel="stylesheet" type="text/css" href="/bootstrap/bootstrap.min.css">
+
+	<!--AWESOMEICONS.IO CSS-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  
+  </head>
+
+  <% include ./../partials/mobileView%>
+  
+  <body>
+	
+	   <% include ./../partials/navbar%> 
+
+       <div id="login-box">
+          
+          <div class="left-box">
+              
+            <h1>Sign Up</h1>
+              
+            <form action="/signup" method="POST">
+
+              <input type="text" name="username" placeholder="Username" required>
+              <input type="text" name="email" placeholder="Email" required>
+              <input type="password" name="password" placeholder="Password" required>
+              <input type="password" name="password2" placeholder="Confirm Password"/>
+              <input type="submit" name="signup-button" value="Sign Up"/> 
+
+            </form>
+  
+          </div> 
+
+            <div class="right-box">
+               <span class="signinwith">Sign in with<br>Social Network</span>
+                <button class="social facebook">Log in with Facebook</button>
+                <button class="social twitter">Log in with Twitter</button>
+                <button class="social google">Log in with Google</button>
+           
+            </div>
+            <div class="or">OR</div>
+       </div>
+    
+
+
+
+    </body>
+</html>
