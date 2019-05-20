@@ -6,13 +6,13 @@ STEPS TO RUN PERSONAL CHAT ON YOUR WEB BROWSER
 LINUX
 ---------
   
-  ________________________
-  INSIDE ./public/chat.js/
-  ________________________
+  ________________________________________________
+  INSIDE app.js and ./public/chat.js/ respectively
+  ________________________________________________
 
     i) Replace 10th Line i.e. "var port=3000" according to the port you are using.
 
-   ii) Replace "localhost:3000" of the 1st line i.e. "var socket=io.connect("localhost:3000");"      according to your IP address and Port as :    "var socket=io.connect("<ip_address>:<port>");"
+    ii) Replace "localhost:3000" of the 1st line i.e. "var socket=io.connect("localhost:3000");"      according to your IP address and Port as :    "var socket=io.connect("<ip_address>:<port>");"
 
 
   _________
