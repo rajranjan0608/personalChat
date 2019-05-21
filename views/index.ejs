@@ -16,16 +16,23 @@
 
         <%include ./partials/navbar.ejs%>
 
-        <%include ./partials/message_disp.ejs%>
-
+        
+        <%if(currentUser){%>
+            <%include ./partials/message_disp.ejs%>
+        <%}%>
+        
         <%include ./partials/chat_input.ejs%>
+        
+
 
         <%if(!currentUser){%>
+            
+            <h3 style="text-align: center">Sign In to Create or Join Personal Chat Rooms</h3>
             <%include ./partials/signup.ejs%>
         <%}else{%>
             <h3 style="text-align:center; color:green">Hello,  <%=currentUser.username%></h3>
-        <%}%>
-        
+            <%include ./partials/newroom.ejs%>
+        <%}%>        
 
         <script src="/chat.js"></script>
 

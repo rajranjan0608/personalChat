@@ -1,4 +1,4 @@
-var socket=io.connect("http://localhost:3000");
+var socket=io.connect("http://192.168.43.195:3000");
 
 //DOM
 
@@ -30,18 +30,17 @@ socket.on("chat",function(data){
     feedback.innerHTML="";
     
     if(user.value==data.username){
-        output.innerHTML+="<p><strong style='color:rgb(111, 170, 0)'>"+data.username+"</strong>: "+data.message+"</p>";
+        output.innerHTML+="<p><strong style='color:rgb(111, 170, 0); float:right;'>"+data.username+"</strong><br><span style='float:right;'>"+data.message+"</span><br></p>";
     }else{
-        output.innerHTML+="<p><strong>"+data.username+"</strong>: "+data.message+"</p>";
+        output.innerHTML+="<p><strong>"+data.username+"</strong><br>"+data.message+"</p>";
     }
-
+    
     message.value="";
     
     var chatHistory = document.getElementById("output");
     chatHistory.scrollTop = chatHistory.scrollHeight;
-
 });
 
 socket.on("typing",function(data){
-    feedback.innerHTML="<p>"+data+" is typing a message...</p>";
+    feedback.innerHTML="<h6 style='color:green;'>"+data+" is typing a message...</h6>";
 }) 

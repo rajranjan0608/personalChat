@@ -4,7 +4,11 @@ var passport        =require("passport");
 var localStrategy   =require("passport-local");
 var bodyParser		=require("body-parser");
 var User            =require("./models/user");
+var Room            =require("./models/room");
 var messages		=require("./models/messages");
+
+var localStrategy2=localStrategy;
+var passport2=passport;
 
 var app=express();
 var port=3000;
@@ -24,6 +28,11 @@ passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//SETTING UP PASSPORT
+// passport.use(new localStrategy2(Room.authenticate()));
+// passport.serializeUser(Room.serializeUser());
+// passport.deserializeUser(Room.deserializeUser());
+
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(function(req,res,next){
@@ -31,6 +40,8 @@ app.use(function(req,res,next){
     res.locals.currentUser=req.user;
     next();
 });
+
+
 
 //STATIC FILES
 app.use(express.static("public"));
@@ -68,10 +79,12 @@ io.on("connection",function(socket){
 
 //ROUTES
 app.get("/",function(req,res){
-	res.redirect("/index");
+    res.redirect("/index");
+    
 });
 
 app.get("/index",function(req,res){
+    console.log(req.sessionID);
 	messages.find({},function(err,messages){
 		if(err){
 			console.log(err);
@@ -84,7 +97,7 @@ app.get("/index",function(req,res){
 
 //AUTHENTICATION
 
-//SIGN UP PAGE
+//USER SIGN UP PAGE
 app.get("/signup",function(req,res){
     res.render("sign_up/signup.ejs");
 });
@@ -109,7 +122,7 @@ app.post("/signup",function(req,res){
     });
 });
 
-//LOG IN
+//USER LOG IN
 app.post("/login",passport.authenticate("local",{
     successRedirect: "/index",
     failureRedirect: "/"
@@ -118,14 +131,46 @@ app.post("/login",passport.authenticate("local",{
 });
 
 
-//LOG OUT
+//USER LOG OUT
 app.get("/logout",function(req,res){
     req.logout();
     res.redirect("/index");
-})
+});
 
-//IS LOGGED IN MIDDLEWARE
-function isLoggedIn(req,res,next){
+//ROOM SIGN UP PAGE
+
+app.post("/roomsignup",function(req,res){
+
+    var username=req.body.roomname;
+    var password=req.body.roomid;
+
+    console.log(username);
+    
+    
+    // console.log("ROOM PASSWORD: "+password);
+
+    var newRoom=new Room({username: username});
+    Room.register(newRoom,password,function(err,room){
+        if(err){
+            console.log(err);
+            return res.redirect("/");
+        }
+        passport.authenticate("local")(req,res,function(){
+            res.redirect("/index");
+        });
+    });
+});
+
+//ROOM LOG IN
+app.post("/roomlogin",passport.authenticate("local",{
+    successRedirect: "/signup",
+    failureRedirect: "/"
+}),function(req,res){
+
+});
+
+//IS USER LOGGED IN MIDDLEWARE
+function isUserLoggedIn(req,res,next){
     if(req.isAuthenticated()){
         return next();
     }

@@ -1,21 +1,22 @@
 
 
-<div id="output" class="ui main text container segment" style="height:300px;line-height:3em;overflow:auto;padding:5px;"><%messages.forEach(function(message){%>
+<div id="output" class="ui main text container segment" style="height:300px;line-height:3em;overflow:auto;padding:5px; z-index:1;"><%messages.forEach(function(message){%>
     
     <%if(currentUser){%>
         
         <%if(message.username==currentUser.username){%>
-            <p ><strong style="color:rgb(111, 170, 0)"><%=message.username%></strong>: <%= message.message%></p> 
+            <p><strong style="color:rgb(111, 170, 0); float:right;"><%=message.username%></strong><br><span style="float:right;"><%= message.message%></span><br></p>
         <%}else{%>
-            <p><strong><%=message.username%></strong>: <%= message.message%></p>    
+            <p><strong><%=message.username%></strong><br> <%= message.message%></p>    
         <%}%>
     
     <%}else{%>
-        <p><strong><%=message.username%></strong>: <%= message.message%></p>
+        <p><strong><%=message.username%><br></strong><%= message.message%></p>
     <%}%>
     
-<%})%></div>
-
+<%})%>
+</div>
+<div style="float:right; z-index:1; position:absolute;" id="feedback"></div>
 <script>
 
     var chatHistory = document.getElementById("output");

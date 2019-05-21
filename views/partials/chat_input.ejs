@@ -33,7 +33,7 @@
 
 <div style="text-align:center;" class="search">
        
-        <input type="text" id="message" placeholder="Chat Here" class="inp" > 
+        <input type="text" id="message" placeholder="Chat Here" class="inp"  <%if(!currentUser){%>disabled<%}%>> 
 </div>
 
 <br>
@@ -43,4 +43,3 @@
 </div>
 
 
-<div id="feedback"></div>
