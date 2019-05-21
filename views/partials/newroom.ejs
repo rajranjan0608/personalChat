@@ -1,0 +1,83 @@
+<style>
+
+.button-container form{
+    float:left;  
+}
+
+.button-container{
+    text-align: center;
+}
+
+</style>
+
+<!--BOOTSTRAP CSS-->
+<!-- <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+        
+<!--SEMANTIC CDN CSS-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+
+<div class="button-container ui main text container segment" >
+      
+    <label></label>
+
+    
+
+    <form style="text-align: center;  width:333px ;height:335px ;" class="form-horizontal ui main text container segment" action="/roomlogin" method="POST" role="form">
+    
+        <div class="form-group">
+            <div class="col-sm-10">
+            <label style="padding-left:px;" class="col-sm-9 control-label">Room Name</label>
+            <input type="text" class="form-control" name="roomname" placeholder="Your Room Name">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            
+            <div class="col-sm-10">
+            <label style="padding-left:5px;"  class="col-sm-8 control-label">Room Id</label>
+            <input type="password" name="roomid" class="form-control" placeholder="Room Password">
+            </div>
+        </div><br><br><br>
+        
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-6" style="padding-right:px; padding-top:8px;" >
+            <button type="submit" class="btn btn-success">Join Chat Room</button>
+            </div>
+        </div>
+    
+    </form>
+
+        <form style="text-align: center; width:333px ;height:335px ; " class="form-horizontal ui main text container segment" action="/roomsignup" method="POST" role="form">
+    
+            <div class="form-group">
+                <div class="col-sm-10">
+                <label style="padding-left:px;" class="col-sm-9 control-label">Room Name</label>
+                <input type="text" class="form-control" name="roomname" placeholder="Unique Room Name">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                
+                <div class="col-sm-10">
+                <label style="padding-right:px;" class="col-sm-8 control-label">Room Id</label>
+                <input type="password" name="roomid" class="form-control" placeholder="Room password">
+                </div>
+            </div>
+
+            <div class="form-group">
+                    
+                    <div class="col-sm-10">
+                    <label style="padding-right:px;" class="col-sm-10 control-label">Confirm Room Id</label>
+                    <input type="password" class="form-control" placeholder="Retype Room password">
+                    </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-1">
+                <button type="submit" class="btn btn-info">Create Chat Room</button>
+                </div>
+            </div>
+        
+        </form>
+</div>
