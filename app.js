@@ -7,9 +7,6 @@ var User            =require("./models/user");
 var Room            =require("./models/room");
 var messages		=require("./models/messages");
 
-var localStrategy2=localStrategy;
-var passport2=passport;
-
 var app=express();
 var port=3000;
 
@@ -41,8 +38,6 @@ app.use(function(req,res,next){
     next();
 });
 
-
-
 //STATIC FILES
 app.use(express.static("public"));
 
@@ -63,11 +58,12 @@ var io=socket(server);
 
 //LISTENING FROM THE CLIENTS
 io.on("connection",function(socket){
-	console.log("New Socket Connetcted with ID: ", socket.id);
+    
+    // console.log("New Socket Connetcted with ID: ", socket.id);
 
 	socket.on("chat",function(data){
-		console.log(data);
-		
+        
+        // console.log(data);
 		messages.create(data)
 		io.sockets.emit("chat",data);
 	});
@@ -80,11 +76,10 @@ io.on("connection",function(socket){
 //ROUTES
 app.get("/",function(req,res){
     res.redirect("/index");
-    
 });
 
 app.get("/index",function(req,res){
-    console.log(req.sessionID);
+    // console.log(req.sessionID);
 	messages.find({},function(err,messages){
 		if(err){
 			console.log(err);
@@ -130,7 +125,6 @@ app.post("/login",passport.authenticate("local",{
 
 });
 
-
 //USER LOG OUT
 app.get("/logout",function(req,res){
     req.logout();
@@ -145,7 +139,6 @@ app.post("/roomsignup",function(req,res){
     var password=req.body.roomid;
 
     console.log(username);
-    
     
     // console.log("ROOM PASSWORD: "+password);
 
@@ -163,7 +156,7 @@ app.post("/roomsignup",function(req,res){
 
 //ROOM LOG IN
 app.post("/roomlogin",passport.authenticate("local",{
-    successRedirect: "/signup",
+    successRedirect: "/",
     failureRedirect: "/"
 }),function(req,res){
 

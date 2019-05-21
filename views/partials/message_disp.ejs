@@ -1,19 +1,22 @@
+<%function prev(prevUser){%>
+    <%if(prevUser==currentUser.username){%>
+        <%return 1;%>
+    <%}%>
+<%}%>
 
+<%var prevUser="0"%>
 
 <div id="output" class="ui main text container segment" style="height:300px;line-height:3em;overflow:auto;padding:5px; z-index:1;"><%messages.forEach(function(message){%>
     
     <%if(currentUser){%>
         
         <%if(message.username==currentUser.username){%>
-            <p><strong style="color:rgb(111, 170, 0); float:right;"><%=message.username%></strong><br><span style="float:right;"><%= message.message%></span><br></p>
+            <%if(prev(prevUser)){%><br><%}%><p style="background: cornsilk; width:80% ; float:right; border-top-left-radius: 10px; border-bottom-left-radius: 10px;"><strong style="color:rgb(111, 170, 0); float:right;"><%=message.username%></strong><br><span style="float:right;"><%= message.message%></span></p><br>
         <%}else{%>
-            <p><strong><%=message.username%></strong><br> <%= message.message%></p>    
+           <p style="width:80% ; float: left; background:whitesmoke;  border-top-right-radius: 10px; border-bottom-right-radius: 10px;"><strong><%=message.username%></strong><br> <%= message.message%></p><br>
         <%}%>
-    
-    <%}else{%>
-        <p><strong><%=message.username%><br></strong><%= message.message%></p>
     <%}%>
-    
+    <%prevUser=message.username%>
 <%})%>
 </div>
 <div style="float:right; z-index:1; position:absolute;" id="feedback"></div>
