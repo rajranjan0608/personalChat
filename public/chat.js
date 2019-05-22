@@ -1,4 +1,4 @@
-var ipaddr="127.0.0.1";
+var ipaddr="192.168.43.195";
 var port="3000";
 
 var socket=io.connect("http://"+ipaddr+":"+port);
@@ -51,7 +51,10 @@ socket.on("chat",function(data){
         output.innerHTML+="<p style='width:80%; float:left;  background:whitesmoke;  border-top-right-radius: 10px; border-bottom-right-radius: 10px;'><strong>"+data.username+"</strong><br>"+data.message+"</p><br>";
     }
     
-    message.value="";
+    if(data.username==user.value){
+        message.value="";
+    }
+    
     
     var chatHistory = document.getElementById("output");
     chatHistory.scrollTop = chatHistory.scrollHeight;
