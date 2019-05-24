@@ -70,7 +70,12 @@ io.on("connection",function(socket){
 
 	socket.on("typing",function(data){
 		socket.broadcast.emit("typing",data);
-	});
+    });
+    
+    socket.on("new",function(data){
+		socket.broadcast.emit("new",data);
+    });
+
 });
 
 //ROUTES
