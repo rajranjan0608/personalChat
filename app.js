@@ -7,8 +7,10 @@ var User            =require("./models/user");
 var Room            =require("./models/room");
 var messages		=require("./models/messages");
 
-var app=express();
 var port=3000;
+var app=express();
+app.set("ports",(process.env.port||port));
+
 
 
 //CREATING EXPRESS-SESSION
@@ -24,11 +26,6 @@ app.use(passport.session());
 passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
-//SETTING UP PASSPORT
-// passport.use(new localStrategy2(Room.authenticate()));
-// passport.serializeUser(Room.serializeUser());
-// passport.deserializeUser(Room.deserializeUser());
 
 app.use(bodyParser.urlencoded({extended:true}));
 
@@ -49,7 +46,7 @@ var socket 			=require("socket.io");
 //CONNECTING WITH DATABASE
 mongoose.connect("mongodb://localhost/chat",{useNewUrlParser:true});
 
-var server=app.listen(port,function(){
+var server=app.listen(app.get("ports"),function(){
 	console.log("Connecting...\nConnected to Port "+port);
 });
 
