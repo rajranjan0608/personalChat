@@ -48,7 +48,7 @@ var mongoURI="mongodb+srv://rajranjan0608:r%40jr%40nj%40no6o8ai999@cluster0-xar3
 //CONNECTING WITH DATABASE
 mongoose.connect(mongoURI,{useNewUrlParser:true});
 
-var server=app.listen(app.get("ports"),function(){
+var server=app.listen(3000||process.env.PORT,function(){
 	console.log("Connecting...\nConnected to Port "+port);
 });
 
