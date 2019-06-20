@@ -9,8 +9,6 @@ var messages		=require("./models/messages");
 
 var port=3000;
 var app=express();
-app.set("ports",(process.env.port||port));
-
 
 
 //CREATING EXPRESS-SESSION
@@ -48,9 +46,7 @@ var mongoURI="mongodb://localhost/chat"
 //CONNECTING WITH DATABASE
 var connection=mongoose.connect(mongoURI,{useNewUrlParser:true});
 
-var server=app.listen(3000||process.env.PORT,function(){
-	console.log("Connecting...\nConnected to Port "+port);
-});
+var server=app.listen(process.env.PORT,process.env.IP);
 
 //SOCKET SETUP : ON THE SERVER SIDE
 var io=socket(server);
