@@ -43,10 +43,10 @@ app.use(express.static("public"));
 //IMPORTING SOCKET
 var socket 			=require("socket.io");
 
-var mongoURI="mongodb+srv://rajranjan0608:r%40jr%40nj%40no6o8ai999@cluster0-xar3j.gcp.mongodb.net/test?retryWrites=true&w=majority"
+var mongoURI="mongodb://localhost/chat"
 
 //CONNECTING WITH DATABASE
-mongoose.connect(mongoURI,{useNewUrlParser:true});
+var connection=mongoose.connect(mongoURI,{useNewUrlParser:true});
 
 var server=app.listen(3000||process.env.PORT,function(){
 	console.log("Connecting...\nConnected to Port "+port);
