@@ -1,0 +1,134 @@
+<!-- CSS -->
+
+<style>
+
+/* The side navigation menu */
+.sidenav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: black; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 10px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #272525;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenavButtons:hover{
+  background:rgb(43, 40, 40);
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #524a4a;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+.sideNavHover:hover{
+  background-color:#272525
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 10px;}
+  .sidenav a {font-size: 18px;}
+}
+
+</style>
+
+<!--------->
+
+<!-- HTML -->
+    <div id="mySidenav" class="sidenav">
+        <span style="margin-left:10px">
+            <img src= "https://www.w3schools.com/howto/img_avatar.png" style="border-radius: 50%;width:40px; display: inline-block">
+            <span style="margin-left:10px; color:white"><font size="4"><%=currentUser.username%></font></span>
+        </span>
+        <a class="closebtn" href="#" onclick="closeNav()">&times;</a>
+        <!-- <hr style=" border-top: 1px solid rgb(73, 70, 70);"> -->
+        
+        <table class="table" style="margin-top:15px;">
+                
+          
+
+          <%allUsers.forEach(function(users){%>
+            <tr class="sideNavhover" style="cursor:pointer" onclick="location.href='/percha?username=<%=users.username%>'">
+              <td><img src= "https://www.w3schools.com/howto/img_avatar.png" style="border-radius: 50%;width:40px;"></td>
+              <td style="margin-left:10px; color:white"><font size="4"><%=users.username%></font></td>
+            </tr> 
+          <%});%>                 
+        
+        </table>
+
+        
+
+    </div>
+    
+    <style>
+    
+        .ham {
+            width: 15px;
+            height: 2px;
+            background-color: black;
+            margin: 3px 0;
+        }
+    
+    </style>
+
+    <!-- Use any element to open the sidenav -->
+    <span style="cursor:pointer; width:25px" onclick="openNav()">
+        <div class="ham"></div>
+        <div class="ham"></div>
+        <div class="ham"></div>
+    </span>
+    
+    <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+    <div id="main">
+
+    </div>
+
+<!--------->
+
+<!---JAVASCRIPT-->
+
+<script>
+
+/* Set the width of the side navigation to 250px */
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
+</script>
+
+<!--------------->

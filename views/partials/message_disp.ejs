@@ -1,32 +1,78 @@
-<%function prev(prevUser){%>
-    <%if(prevUser==currentUser.username){%>
-        <%return 1;%>
+
+
+
+<%if(url.split("?")[0]=="/percha"){%>
+    <input hidden id="url" value="<%=url.split('?')[0]%>" >
+    <%function prev(prevUser){%>
+        <%if(prevUser==currentUser.username){%>
+            <%return 1;%>
+        <%}%>
     <%}%>
-<%}%>
 
-<%var prevUser="0"%>
+    <%var prevUser="0"%>
 
 
-<div class="ui main text container segment">Chat Room <br> <div id="feedback" style="color:darkgreen;"></div>
-    <div id="output" class="ui top attached segment" style="height:300px;line-height:3em;overflow:auto;">
-        <%messages.forEach(function(message){%>
-            <%if(currentUser){%>
-                <%if(message.username==currentUser.username){%>
-                    <p style="background: cornsilk; width:80% ; float:right; border-top-left-radius: 10px; border-bottom-left-radius: 10px;"><strong style="color:rgb(111, 170, 0); float:right;"><%=message.username%></strong><br><span style="float:right;"><%= message.message%></span></p><br>
-                <%}else{%>
-                <p style="width:80% ; float: left; background:whitesmoke;  border-top-right-radius: 10px; border-bottom-right-radius: 10px;"><strong style="color:red;"><%=message.username%></strong><br> <%= message.message%></p><br>
-                <%}%>
+    <div class="ui main text container segment"><%=user1.username%><br> <div id="feedback" style="color:darkgreen;"></div>
+        <div id="output" class="ui top attached segment" style="height:300px;line-height:3em;overflow:auto;">
+            <%if(isPerMessages){%>
+                <%console.log(isPerMessages)%>
+                <%perMessages.forEach(function(message){%>
+                    <%if(currentUser){%>
+                        <%if(message.reqUser==currentUser.username){%>
+                            <p style="background: cornsilk; width:80% ; float:right; border-top-left-radius: 10px; border-bottom-left-radius: 10px;"><strong style="color:rgb(111, 170, 0); float:right;"><%=currentUser.username%></strong><br><span style="float:right;"><%=message.message%></span></p><br>
+                        <%}else{%>
+                            <p style="width:80% ; float: left; background:whitesmoke;  border-top-right-radius: 10px; border-bottom-right-radius: 10px;"><strong style="color:red;"><%=user1.username%></strong><br> <%= message.message%></p><br>
+                        <%}%>
+                    <%}%>
+                    <%prevUser=message.username%>
+                <%})%>
+            <%}else{%>
+                <p style="background: rgb(55, 94, 221); width:80% ;border-top-left-radius: 10px; border-bottom-left-radius: 10px;"><strong style="color:rgb(247, 248, 245);">Say Hi to <%=user1.username%></strong></p><br>
             <%}%>
-            <%prevUser=message.username%>
-        <%})%>
+        </div>
     </div>
-</div>
 
-<script>
+    <script>
 
-    var chatHistory = document.getElementById("output");
-    chatHistory.scrollTop = chatHistory.scrollHeight;
+        var chatHistory = document.getElementById("output");
+        chatHistory.scrollTop = chatHistory.scrollHeight;
 
-</script>
+    </script>    
+
+
+<%}else if(url=="/index"){%>
+
+    <%function prev(prevUser){%>
+        <%if(prevUser==currentUser.username){%>
+            <%return 1;%>
+        <%}%>
+    <%}%>
+
+    <%var prevUser="0"%>
+
+
+    <div class="ui main text container segment">Chat Room <br> <div id="feedback" style="color:darkgreen;"></div>
+        <div id="output" class="ui top attached segment" style="height:300px;line-height:3em;overflow:auto;">
+            <%messages.forEach(function(message){%>
+                <%if(currentUser){%>
+                    <%if(message.username==currentUser.username){%>
+                        <p style="background: cornsilk; width:80% ; float:right; border-top-left-radius: 10px; border-bottom-left-radius: 10px;"><strong style="color:rgb(111, 170, 0); float:right;"><%=message.username%></strong><br><span style="float:right;"><%= message.message%></span></p><br>
+                    <%}else{%>
+                    <p style="width:80% ; float: left; background:whitesmoke;  border-top-right-radius: 10px; border-bottom-right-radius: 10px;"><strong style="color:red;"><%=message.username%></strong><br> <%= message.message%></p><br>
+                    <%}%>
+                <%}%>
+                <%prevUser=message.username%>
+            <%})%>
+        </div>
+    </div>
+
+    <script>
+
+        var chatHistory = document.getElementById("output");
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+
+    </script>
+
+<%}%>
 
         

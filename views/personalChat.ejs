@@ -1,0 +1,50 @@
+<html>
+
+    <title>Personal Chat</title>
+
+    <%include ./partials/mobileView.ejs%>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+
+    <body>
+
+        <!--BOOTSTRAP CSS-->
+        <link rel="stylesheet" type="text/css" href="/bootstrap/bootstrap.min.css">
+        
+        <!--SEMANTIC CDN CSS-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+        <%include ./partials/navbar.ejs%>
+
+        <%if(currentUser){%>
+            <%include ./partials/sideNav.ejs%>
+        <%}%>
+        
+        <%if(isUserAvailable){%>
+        
+            <%if(currentUser){%>
+                <%include ./partials/message_disp.ejs%>
+            <%}%>
+            
+            <%include ./partials/chat_input.ejs%>
+
+            <%if(!currentUser){%>
+            
+                <h3 style="text-align: center">Sign In to Chat with <%=user1.username%></h3>
+                <%include ./partials/signup.ejs%>
+            <%}else{%>
+                <h3 style="text-align:center; color:green">Hello,  <%=currentUser.username%></h3>
+                <%include ./partials/newroom.ejs%>
+            <%}%>        
+
+            <script src="/chat.js"></script>
+            
+        <%}else{%>
+
+            <h3 class="container">No user Found</h3>
+
+        <%}%>      
+
+    </body>
+
+</html>

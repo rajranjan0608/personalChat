@@ -16,6 +16,9 @@
 
         <%include ./partials/navbar.ejs%>
 
+        <%if(currentUser){%>
+            <%include ./partials/sideNav.ejs%>
+        <%}%>
         
         <%if(currentUser){%>
             <%include ./partials/message_disp.ejs%>
@@ -23,7 +26,7 @@
         
         <%include ./partials/chat_input.ejs%>
         
-
+        <input hidden id="url" value="<%=url.split('?')[0]%>" >
 
         <%if(!currentUser){%>
             

@@ -6,6 +6,7 @@ var bodyParser		=require("body-parser");
 var User            =require("./models/user");
 var Room            =require("./models/room");
 var messages		=require("./models/messages");
+var percha          =require("./models/percha");
 
 var port=3000;
 var app=express();
@@ -33,6 +34,14 @@ app.use(function(req,res,next){
     next();
 });
 
+app.use(function(req,res,next){
+    User.find({},function(err,allUsers){
+        res.locals.allUsers=allUsers;
+    });
+    res.locals.url=req.url;
+    next();
+});
+
 //STATIC FILES
 app.use(express.static("public"));
 
@@ -46,8 +55,10 @@ var mongoURI="mongodb://localhost/chat"
 //CONNECTING WITH DATABASE
 var connection=mongoose.connect(mongoURI,{useNewUrlParser:true});
 
-var server=app.listen(process.env.PORT,process.env.IP);
-
+var server=app.listen(3000,function(){
+    console.log("Server running on port 3000");
+});
+//var server=app.listen(3000);
 //SOCKET SETUP : ON THE SERVER SIDE
 var io=socket(server);
 
@@ -58,8 +69,11 @@ io.on("connection",function(socket){
 
 	socket.on("chat",function(data){
         
-        // console.log(data);
-		messages.create(data)
+        if(data.type=="percha"){
+            percha.create(data);
+        }else{
+            messages.create(data);
+        }
 		io.sockets.emit("chat",data);
 	});
 
@@ -80,15 +94,39 @@ app.get("/",function(req,res){
 
 app.get("/index",function(req,res){
     // console.log(req.sessionID);
-	messages.find({},function(err,messages){
-		if(err){
-			console.log(err);
-		}
-		else{
-			res.render("index.ejs",{messages:messages});
-		}
-	});
+    User.find({},function(err,allUsers){
+        messages.find({},function(err,messages){
+            if(err){
+                console.log(err);
+            }
+            else{
+                res.render("index.ejs",{messages:messages});
+            }
+        });
+    });
 });
+
+app.get("/percha",function(req,res){
+    User.findOne({username:req.query.username},function(err,user1){
+        if(user1){
+            if(req.user){
+               
+                percha.find({$or:[{perchaId:req.user.username+user1.username},{perchaId:user1.username+req.user.username}]},function(err,perMessages){
+                    if(perMessages.length!=0){
+                        res.render("personalChat.ejs",{isUserAvailable:true, user1:user1, isPerMessages:true, perMessages:perMessages})
+                    }else{
+                        res.render("personalChat.ejs",{isUserAvailable:true, user1:user1, isPerMessages:false})
+                    }
+                });
+                
+            }else{
+                res.render("personalChat.ejs",{isUserAvailable:true, user1:user1})
+            }
+        }else{
+            res.render("personalChat.ejs",{isUserAvailable:false})
+        }
+    })
+})
 
 //AUTHENTICATION
 
