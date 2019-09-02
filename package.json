@@ -21,7 +21,7 @@
   "homepage": "https://github.com/rajranjan0608/relaychat#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "ejs": "^2.6.1",
+    "ejs": "^2.7.1",
     "express": "^4.17.0",
     "express-session": "^1.16.1",
     "http": "0.0.0",
